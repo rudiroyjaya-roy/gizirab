@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BizStarter Hub - Start Your Business Now</title>
+    <style>
+        /* Reset dasar */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fa;
+            color: #222;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: #0077ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #004ecb;
+        }
+
+        /* Container umum */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: #0077ff;
+            cursor: pointer;
+            user-select: none;
+            letter-spacing: 1.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        nav ul li a {
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #e0e7ff;
+            color: #004ecb;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 320px;
+            border-radius: 12px;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.45);
+            border-radius: 12px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            max-width: 700px;
+            padding: 0 1rem;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content button {
+            background-color: #ffdd57;
+            color: #222;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 221, 87, 0.7);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .hero-content button:hover {
+            background-color: #ffcc00;
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(255, 204, 0, 0.8);
+        }
+
+        /* Section Titles */
+        section h2 {
+            font-size: 1.8rem;
+            color: #0077ff;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #0077ff;
+            padding-left: 0.8rem;
+            font-weight: 800;
+        }
+
+        /* Cards Grid */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #0077ff;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1rem 1.5rem 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-content h3 {
+            color: #0077ff;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .card-content p {
+            color: #555;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: #0077ff;
+            color: white;
+            border-radius: 14px;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 8px 20px rgba(0, 119, 255, 0.3);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ddeeff;
+        }
+
+        .newsletter form {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 0.9rem 1.5rem;
+            border-radius: 40px;
+            border: none;
+            font-size: 1.1rem;
+            width: 320px;
+            max-width: 90vw;
+            outline-offset: 2px;
+        }
+
+        .newsletter button {
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            border: none;
+            background-color: #ffdd57;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(255, 221, 87, 0.6);
+            color: #222;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .newsletter button:hover {
+            background-color: #ffcc00;
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(255, 204, 0, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            background: #eee;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .nav {
+                flex-direction: column;
+                gap: 0.8rem;
+                height: auto;
+                padding: 0.5rem 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter form {
+                flex-direction: column;
+            }
+
+            .newsletter input[type="email"],
+            .newsletter button {
+                width: 100%;
+                border-radius: 40px;
+            }
+
+            .newsletter button {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav">
+            <div class="logo">BizStarter Hub</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="#">Authors</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Start, Grow & Monetize Your Business!</h1>
+                <p>A simple platform for those who want to build a business from zero to success.</p>
+                <button>Explore Content</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>How-to Guides</h2>
+            <div class="cards">
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+                        alt="Starting Online Business" />
+                    <div class="card-content">
+                        <h3>Starting an Online Business</h3>
+                        <p>Practical steps for those who want to sell online without hassle.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+                        alt="Marketing Strategies" />
+                    <div class="card-content">
+                        <h3>Marketing Strategies</h3>
+                        <p>How to make your products fly off the shelves with modern marketing techniques.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+                        alt="Monetizing Creative Ideas" />
+                    <div class="card-content">
+                        <h3>Monetizing Creative Ideas</h3>
+                        <p>Tips to turn your creative business ideas into cash.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2>Sponsored Tools</h2>
+<div class="cards">
+<article class="card">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Business Tool A" />
+<div class="card-content">
+<h3>Business Tool A</h3>
+<p>Tools to help you manage and track your business efficiently.</p>
+</div>
+</article>
+<article class="card">
+<img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=80" alt="Business Tool B" />
+<div class="card-content">
+<h3>Business Tool B</h3>
+<p>A platform to create websites without coding.</p>
+</div>
+</article>
+</div>
+
+</section> <section> <h2>Author Spotlight</h2> 
+    <div class="cards"> <article class="card"> <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Doe" /> 
+        <div class="card-content"> <h3>Jane Doe</h3> 
+            <p>Entrepreneur & content creator, digital marketing specialist.</p> 
+        </div> </article> <article class="card"> <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="John Smith" /> 
+            <div class="card-content"> 
+                <h3>John Smith</h3> <p>Expert in startups and online business monetization.</p> 
+            </div> </article> </div> </section> <section class="newsletter"> 
+                <h2>Subscribe to Our Newsletter</h2> <p>Get the latest updates & business tips straight to your inbox!</p> 
+                <form onsubmit="event.preventDefault(); alert('Thanks for subscribing!')"> 
+                    <input type="email" placeholder="Enter your email" required /> <button type="submit">Subscribe</button> 
+                </form> </section> </main> 
+                <footer> &copy; 2025 BizStarter Hub. All rights reserved. </footer> 
+            </body> 
+            </html> 
